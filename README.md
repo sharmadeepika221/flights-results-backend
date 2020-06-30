@@ -27,7 +27,7 @@ Flights project - Frontend :
 
 Once its done , access the front end using the below url.
 ```
-        http://localhost:8081/#/home
+        http://localhost:3000/#/home
 ```
 
 If required change frontend.url in application.propeties to the frontend url
