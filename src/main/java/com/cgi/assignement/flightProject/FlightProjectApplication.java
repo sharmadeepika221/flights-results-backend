@@ -17,7 +17,7 @@ public class FlightProjectApplication {
 		SpringApplication.run(FlightProjectApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -26,5 +26,5 @@ public class FlightProjectApplication {
 			}
 		};
 
-	}
+	}*/
 }

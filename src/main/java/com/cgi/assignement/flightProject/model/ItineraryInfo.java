@@ -24,14 +24,6 @@ public class ItineraryInfo {
         this.id = id;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getAgent() {
         return agent;
     }
@@ -54,6 +46,14 @@ public class ItineraryInfo {
 
     public void setLegs(List<String> legs) {
         this.legs = legs;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
 

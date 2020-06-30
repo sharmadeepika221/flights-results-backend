@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * Controller class
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/flightResults")
 @Api(tags = { "flights" })
 public class FlightController extends AbstractRestHandler{
