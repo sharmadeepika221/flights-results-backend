@@ -1,9 +1,7 @@
 package com.cgi.assignement.flightProject.controller;
 
-import com.cgi.assignement.flightProject.dao.impl.FlightDataDaoImpl;
 import com.cgi.assignement.flightProject.exception.ResourceNotFoundException;
 import com.cgi.assignement.flightProject.model.FlightResults;
-import com.cgi.assignement.flightProject.model.ItineraryInfo;
 import com.cgi.assignement.flightProject.service.FlightService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/api/v1/flightResults")
 @Api(tags = { "flights" })
 public class FlightController extends AbstractRestHandler{
-    private static final Logger log = LoggerFactory.getLogger(FlightController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FlightController.class);
     @Autowired
     private FlightService flightService;
 
@@ -42,7 +40,7 @@ public class FlightController extends AbstractRestHandler{
                                                                HttpServletResponse response) {
         FlightResults results = flightService.retrieveFlightResults();
         if (results == null) {
-            log.error("No flight Results available");
+            logger.error("No flight Results available");
             throw new ResourceNotFoundException("No record found");
         }
         return new ResponseEntity<FlightResults>(results, HttpStatus.OK);

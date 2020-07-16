@@ -13,13 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -34,7 +28,7 @@ public class FlightServiceImplTest {
     private FlightDataDao flightDataDao;
 
     @Test
-    public void getFlightsResultsTest() throws ParseException {
+    public void getFlightsResultsTest() {
         when(flightDataDao.getFlightResults()).thenReturn(new FlightResults(new ArrayList<ItineraryInfo>(), new ArrayList<FlightInfo>()));
         assertEquals(0, flightService.retrieveFlightResults().getItineraries().size());
     }
@@ -44,5 +38,6 @@ public class FlightServiceImplTest {
         when(flightDataDao.getFlightResults()).thenThrow(new ResourceNotFoundException());
         flightService.retrieveFlightResults();
     }
+
 
 }
