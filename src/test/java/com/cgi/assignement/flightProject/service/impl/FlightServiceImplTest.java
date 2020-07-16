@@ -14,6 +14,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -29,10 +34,20 @@ public class FlightServiceImplTest {
 
     @Test
     public void getFlightsResultsTest() {
-        when(flightDataDao.getFlightResults()).thenReturn(new FlightResults(new ArrayList<ItineraryInfo>(), new ArrayList<FlightInfo>()));
-        assertEquals(0, flightService.retrieveFlightResults().getItineraries().size());
+        List<ItineraryInfo> itineraryInfos = new ArrayList<>();
+        itineraryInfos.add(new ItineraryInfo("11",null, "2000", "abc", 3.5));
+        when(flightDataDao.getFlightResults()).thenReturn(new FlightResults((ArrayList<ItineraryInfo>) itineraryInfos, new ArrayList<FlightInfo>()));
+        assertEquals(1, flightService.retrieveFlightResults().getItineraries().size());
     }
 
+    @Test
+    public void getFlightsResultsWithNoLegsTest() {
+        List<ItineraryInfo> itineraryInfos = new ArrayList<>();
+        itineraryInfos.add(new ItineraryInfo("11",null, "2000", "abc", 3.5));
+        when(flightDataDao.getFlightResults()).thenReturn(new FlightResults((ArrayList<ItineraryInfo>) itineraryInfos, new ArrayList<FlightInfo>()));
+        assertEquals(true, flightService.retrieveFlightResults().getItineraries().get(0).getLegs()==null);
+        assertThat(flightService.retrieveFlightResults().getItineraries().get(0).getLegs(), nullValue());
+    }
     @Test(expected = ResourceNotFoundException.class)
     public void getFlightsWithNoValuesTest() {
         when(flightDataDao.getFlightResults()).thenThrow(new ResourceNotFoundException());

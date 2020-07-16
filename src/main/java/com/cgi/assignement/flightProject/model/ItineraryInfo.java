@@ -16,6 +16,14 @@ public class ItineraryInfo {
     private String agent;
     private double agent_rating;
 
+    public ItineraryInfo(String id, List<String> legs, String price, String agent, double agent_rating) {
+        this.id = id;
+        this.legs = legs;
+        this.price = price;
+        this.agent = agent;
+        this.agent_rating = agent_rating;
+    }
+
     public String getId() {
         return id;
     }

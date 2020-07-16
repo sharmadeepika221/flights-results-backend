@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,7 +39,7 @@ public class FlightControllerTest {
 
         MvcResult result = mockMvc.perform(get("/api/v1/flightResults").content(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
-        Assert.assertTrue(result.getResponse().getStatus() == 200);
+        assertEquals(result.getResponse().getStatus(),200);
 
     }
 
@@ -46,7 +47,7 @@ public class FlightControllerTest {
     public void getFlightResultsByInvalidUrlTest() throws Exception {
         MvcResult result = mockMvc.perform(get("/api/v1/flight").content(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isNotFound()).andReturn();
-        Assert.assertTrue(result.getResponse().getStatus() == 404);
+        assertEquals(result.getResponse().getStatus(),404);
 
     }
 
